@@ -36,7 +36,7 @@ export class ImageDrawingComponent implements OnInit {
     public hasError = false;
     public errorMessage = '';
 
-    private canvas?: any;
+    public canvas?: any;
     private stack: any[] = [];
 
     drawingSizes = ['small', 'medium', 'large'];
