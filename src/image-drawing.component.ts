@@ -23,6 +23,7 @@ export class ImageDrawingComponent implements OnInit {
     @Input() public tooltipLanguage: 'en' | 'fr' = 'en';
 
     @Output() public save: EventEmitter<Blob> = new EventEmitter<Blob>();
+     @Output() public loaded: EventEmitter<Boolean> = new EventEmitter<Boolean>();
     @Output() public cancel: EventEmitter<void> = new EventEmitter<void>();
 
     public currentTool = 'brush';
@@ -98,6 +99,7 @@ export class ImageDrawingComponent implements OnInit {
             };
             imgEl.onload = () => {
                 this.isLoading = false;
+                this.loaded.emit(true);
                 const fabricImg = new fabric.Image(imgEl);
                 fabricImg.scaleToWidth(imgEl.width * this.imageScale, false);
                 canvas.setBackgroundImage(fabricImg, ((img: HTMLImageElement) => {
