@@ -32,8 +32,8 @@
     </div>
   </div>
   <div class="buttons">
-<!--     <a href="#" class="button btn-primary" (click)="saveImage(); $event.preventDefault()">{{ saveBtnText }}</a>
-    <a href="#" class="button btn-light" (click)="cancelAction(); $event.preventDefault()">{{ cancelBtnText }}</a> -->
+    <a href="#" class="button btn-primary" (click)="saveImage(); $event.preventDefault()" *ngIf="showButton">{{ saveBtnText }}</a>
+    <a href="#" class="button btn-light" (click)="cancelAction(); $event.preventDefault()"  *ngIf="showButton">{{ cancelBtnText }}</a>
 <!--       <button mat-stroked-button color="warn" (click)="cancelAction(); $event.preventDefault()" class="butSave mr-8">{{ cancelBtnText }}</button>
       <button mat-flat-button (click)="saveImage(); $event.preventDefault()" cdkFocusInitial color="warn" class="butSave mr-16">{{ saveBtnText }}</button> -->
   </div>
