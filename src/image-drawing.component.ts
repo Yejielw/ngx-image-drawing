@@ -23,7 +23,7 @@ export class ImageDrawingComponent implements OnInit {
     // TODO: Implement i18n
     @Input() public tooltipLanguage: 'en' | 'fr' = 'en';
 
-    @Output() public save: EventEmitter<Blob> = new EventEmitter<Blob>();
+    @Output() public save: EventEmitter<any> = new EventEmitter<any>();
      @Output() public loaded: EventEmitter<Boolean> = new EventEmitter<Boolean>();
     @Output() public cancel: EventEmitter<void> = new EventEmitter<void>();
 
@@ -163,7 +163,7 @@ export class ImageDrawingComponent implements OnInit {
         if (this.canRedo) {
             const firstInStack = this.stack.splice(-1, 1)[0];
             if (firstInStack !== null && firstInStack !== undefined) {
-                this.canvas.insertAt(firstInStack, this.canvas.getObjects().length - 1);
+                this.canvas.insertAt(firstInStack, this.canvas.getObjects().length - 1, true);
             }
             this.setUndoRedo();
         }
@@ -177,13 +177,20 @@ export class ImageDrawingComponent implements OnInit {
     }
 
     public saveImage() {
-        this.canvas.getElement().toBlob(
-            (data: Blob) => {
-                this.save.emit(data);
-            },
-            this.outputMimeType,
-            this.outputQuality
-        );
+
+      
+    //    console.log(try2)
+
+        this.save.emit(this.canvas.toSVG({suppressPreamble:true}));
+
+    //    this.canvas.toSVG()
+        // this.canvas.getElement().toBlob(
+        //     (data: Blob) => {
+        //         this.save.emit(data);
+        //     },
+        //     this.outputMimeType,
+        //     this.outputQuality
+        // );
     }
 
     public cancelAction() {
