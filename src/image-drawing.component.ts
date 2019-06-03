@@ -9,6 +9,7 @@ import { fabric } from 'fabric';
 export class ImageDrawingComponent implements OnInit {
 
     @Input() public src?: string;
+    @Input() public showButton?: true;
     @Input() public saveBtnText = 'Save';
     @Input() public cancelBtnText = 'Cancel';
     @Input() public loadingText = 'Loading…';
